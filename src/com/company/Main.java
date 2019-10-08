@@ -18,6 +18,8 @@ public class Main {
         tree.insert(56);
         tree.insert(54);
         tree.insert(40);
-        tree.delete(600);
+        tree.inorderTraversal();
+        tree.postOrderTraversal();
+        tree.preOrderTraversal();
     }
 }

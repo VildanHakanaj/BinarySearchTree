@@ -89,6 +89,55 @@ public class BinarySearchTree {
     return root;
   }
 
+
+  public void inorderTraversal(){
+    inorderTraversal(root);
+    System.out.println("\n");
+  }
+
+  private void inorderTraversal(Node root){
+
+    if(root == null){
+      return;
+    }
+
+    inorderTraversal(root.getLeft());
+    System.out.print(root.getData() + " ");
+    inorderTraversal(root.getRight());
+  }
+
+  public void postOrderTraversal(){
+    postOrderTraversal(root);
+    System.out.println("\n");
+  }
+
+  private void postOrderTraversal(Node root){
+    if(root == null){
+      return;
+    }
+
+    postOrderTraversal(root.getLeft());
+    postOrderTraversal(root.getRight());
+    System.out.print(root.getData() + " ");
+  }
+
+  public void preOrderTraversal(){
+    preOrderTraversal(root);
+    System.out.println("\n");
+  }
+
+  private void preOrderTraversal(Node root){
+    if(root == null){
+      return;
+    }
+
+    System.out.print(root.getData() + " ");
+    preOrderTraversal(root.getLeft());
+    preOrderTraversal(root.getRight());
+  }
+
+
+
   /**
    * region Secondary Methods
    *
