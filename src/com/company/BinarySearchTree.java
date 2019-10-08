@@ -26,6 +26,7 @@ public class BinarySearchTree {
    * recursively runs down the tree and insert the node accordingly
    * @param data = data to be inserted
    * @param root = the root of the current tree
+   * @return Node -> the current root of the tree
    * */
   private Node insert(int data, Node root){
 
@@ -46,6 +47,63 @@ public class BinarySearchTree {
 
   }
 
+  /**
+   *
+   * Method delete
+   * deletes the given data from the tree
+   *
+   * Deleting has three cases.
+   * 1. The node has no children --> just cut the leaf node
+   * 2. the node has one child (left)or(right) -> we just replace the node with the child
+   * 3. The node has both children -> we find the smallest on the right of the node and make adjustments accordingly
+   *
+   * @param data -> data wished to be deleted
+   * @return void
+   *
+   * */
+  public void delete(int data){
+    root = delete(data, root);
+  }
+
+  private Node delete(int data, Node root){
+
+    //Move down the tree until we find the node
+    if (root.getData() > data) {
+      root.setLeft(delete(data, root.getLeft()));
+    }else if(root.getData() < data){
+      root.setRight(delete(data, root.getRight()));
+    }else{
+      /**Case 1 && 2the node has only one child*/
+      if(root.getLeft() == null){
+        root = root.getRight();
+      }else if(root.getRight() == null){
+        root = root.getLeft();
+      }else{
+        Node minimum = findMin(root.getRight());  //Get the minimum of the right subtree
+        root.setData(minimum.getData());          //Update the node we want to delete with the minimum
+        root.setRight(delete(minimum.getData(), root.getRight()));  //delete the node the min node we used
+      }
+
+    }
+
+    return root;
+  }
+
+  /**
+   * region Secondary Methods
+   *
+   * This are the methods that are needed by the main methods to accomplish
+   * the main functionality
+   * */
+
+    private Node findMin(Node root){
+
+      while(root.getLeft() != null){
+        root = root.getLeft();
+      }
+
+      return root;
+    }
 
   /*
   * Region Helper Methods
